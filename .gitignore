@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # temp
-!products/.gitkeep
+/public/!products/.gitkeep
 
 # dependencies
 /node_modules

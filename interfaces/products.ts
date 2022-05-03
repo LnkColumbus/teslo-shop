@@ -1,5 +1,6 @@
 export interface IProduct {
     _id: string;
+    createdAt: string;
     description: string;
     gender: 'men' | 'women' | 'kid' | 'unisex';
     images: string[];
@@ -10,6 +11,7 @@ export interface IProduct {
     tags: string[];
     title: string;
     type: IType;
+    updatedAt: string;
 }
 
 export type ISize = 'XS'|'S'|'M'|'L'|'XL'|'XXL'|'XXXL';

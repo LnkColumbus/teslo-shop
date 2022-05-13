@@ -40,7 +40,4 @@ const searchProducts = async (req: NextApiRequest, res: NextApiResponse<Data> ) 
         return res.status(500).json({ message: error.errors.status.message });
     }
 
-    return res.status(200).json({ message: 'ok' });
-
-
 }

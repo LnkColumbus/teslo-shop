@@ -4,19 +4,12 @@ import NextLink from 'next/link'
 import { Box, Button, CardActionArea, CardMedia, Grid, Link, Typography } from '@mui/material'
 import { ItemCounter } from '../ui'
 
-import { initialData } from '../../database/products'
 import { CartContext } from '../../context'
 import { ICartProduct } from '../../interfaces'
 
 interface Props {
     editable?: boolean;
 }
-
-// const productsInCart = [ 
-//     initialData.products[0],
-//     initialData.products[1],
-//     initialData.products[2],
-// ]
 
 export const CartList: FC<Props> = ({ editable = false  }) => {
 

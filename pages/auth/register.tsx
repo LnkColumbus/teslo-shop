@@ -29,18 +29,19 @@ const RegisterPage = () => {
     const onRegisterForm = async ({ name, email, password }: FormData ) => {
         setShowError(false);
         const { hasError, message } = await registerUser(name, email, password);
-
+        
         if ( hasError ) {
             setShowError(true);
             setErrorMessage( message! )
             setTimeout(() => {
                 setShowError(false);
             }, 3000);
-
+            
             return;
         }
         
-        router.replace('/');
+        const destination = router.query.p?.toString() || '/';
+        router.replace(destination);
     }
 
     return (
@@ -117,7 +118,10 @@ const RegisterPage = () => {
                         </Button>
                     </Grid>
                     <Grid item xs={12} display="flex" justifyContent="end">
-                        <NextLink href="/auth/login" passHref>
+                        <NextLink
+                            href={ router.query.p ? `/auth/login?p=${router.query.p}` : '/auth/login'}
+                            passHref
+                        >
                             <Link underline="always">
                                 <Typography>¿Ya tienes cuenta?</Typography>
                             </Link>

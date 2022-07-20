@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { useForm } from 'react-hook-form';
@@ -39,9 +39,23 @@ const AddressPage = () => {
 
     const router = useRouter();
     const { updateAddress } = useContext(CartContext);
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
-        defaultValues: getAddressFromCookies()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            address: '',
+            address2: '',
+            zipCode: '',
+            city: '',
+            country: countries[0].code,
+            phone: '',
+        }
     });
+
+    useEffect(() => {
+      reset(getAddressFromCookies());
+    }, [])
+    
 
     const onSubmit = (data: FormData) => {
         updateAddress( data );
@@ -134,32 +148,33 @@ const AddressPage = () => {
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <FormControl fullWidth>
-                            <TextField
-                                select
-                                variant="filled"
-                                label="País"
-                                defaultValue={ Cookies.get('country') || countries[0].code }
-                                error={ !!errors.country }
-                                helperText={ errors.country?.message }
-                                {
-                                    ...register("country", {
-                                        required: "Campo obligatorio"
-                                    })
-                                }
-                            >
-                                {
-                                    countries.map( country => (
-                                        <MenuItem
-                                            key={country.code}
-                                            value={country.code}
-                                        >
-                                            {country.name}
-                                        </MenuItem>
-                                    ))
-                                }
-                            </TextField>
-                        </FormControl>
+                        {/* <FormControl fullWidth> */}
+                        <TextField
+                            // select
+                            variant="filled"
+                            label="País"
+                            fullWidth
+                            // defaultValue={ Cookies.get('country') || countries[0].code }
+                            error={ !!errors.country }
+                            helperText={ errors.country?.message }
+                            {
+                                ...register("country", {
+                                    required: "Campo obligatorio"
+                                })
+                            }
+                        />
+                            {/* {
+                                countries.map( country => (
+                                    <MenuItem
+                                        key={country.code}
+                                        value={country.code}
+                                    >
+                                        {country.name}
+                                    </MenuItem>
+                                ))
+                            }
+                        </TextField> */}
+                        {/* </FormControl> */}
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <TextField

@@ -1,10 +1,10 @@
 import { createContext } from 'react';
 
-import { ICartProduct } from '../../interfaces';
-import { ShippingAddress } from './';
+import { ICartProduct, ShippingAddress } from '../../interfaces';
 
 interface ContextProps {
     isLoaded: boolean;
+    isOrdered: boolean;
     cart: ICartProduct[];
     numberOfItems: number;
     subTotal: number;
@@ -18,6 +18,12 @@ interface ContextProps {
     updateCartQuantity: (product: ICartProduct) => void;
     updateAddress: (address: ShippingAddress) => void;
     removeCartProduct: (product: ICartProduct) => void;
+
+    // Orders
+    createOrder: () => Promise<{
+        hasError: boolean;
+        message: string;
+    }>;
 }
 
 export const CartContext = createContext({} as ContextProps);

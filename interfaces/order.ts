@@ -5,13 +5,13 @@ export interface IOrder {
     user?: IUser | string;
     orderItems: IOrderItem[];
     shippingAddress: ShippingAddress;
-    paymentResult?: string;
     numberOfItems: number;
     subTotal: number;
     tax: number;
     total: number;
     isPaid: boolean;
     paidAt?: string;
+    transactionId?: string;
 }
 
 export interface IOrderItem {

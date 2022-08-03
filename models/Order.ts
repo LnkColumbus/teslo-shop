@@ -13,7 +13,6 @@ const orderSchema = new Schema({
         price    : { type: Number, required: true },
         gender   : { type: String, required: true }
     }],
-    paymentResult: { type: String },
     shippingAddress: {
         firstName : { type: String, required: true },
         lastName  : { type: String, required: true },
@@ -30,6 +29,7 @@ const orderSchema = new Schema({
     total         : { type: Number, required: true },
     isPaid        : { type: Boolean, required: true, default: false },
     paidAt        : { type: String },
+    transactionId: { type: String },
 }, {
     timestamps: true,
 });

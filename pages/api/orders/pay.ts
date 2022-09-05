@@ -74,7 +74,7 @@ const payOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         return res.status(401).json({ message: 'Orden no reconocida' });
     }
 
-    if ( isValidObjectId(orderId) ) {
+    if ( !isValidObjectId(orderId) ) {
         return res.status(400).json({ message: 'No es un mongoID válido' });
     }
 
